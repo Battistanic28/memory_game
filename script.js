@@ -4,17 +4,17 @@ let card2 = null;
 let cardsFlipped = 0;
 let noClicking = false;
 
-const COLORS = [
-  "red",
-  "blue",
-  "green",
-  "orange",
-  "purple",
-  "red",
-  "blue",
-  "green",
-  "orange",
-  "purple"
+const EMOJIS = [
+  "happy",
+  "stoke",
+  "in-love",
+  "tongue-out",
+  "yippy",
+  "happy",
+  "stoke",
+  "in-love",
+  "tongue-out",
+  "yippy"
 ];
 
 // here is a helper function to shuffle an array
@@ -40,18 +40,18 @@ function shuffle(array) {
   return array;
 }
 
-let shuffledColors = shuffle(COLORS);
+let shuffledEmojis = shuffle(EMOJIS);
 
 // this function loops over the array of colors
 // it creates a new div and gives it a class with the value of the color
 // it also adds an event listener for a click for each card
-function createDivsForColors(colorArray) {
-  for (let color of colorArray) {
+function createDivsForColors(emojiArray) {
+  for (let emoji of emojiArray) {
     // create a new div
     const newDiv = document.createElement("div");
 
     // give it a class attribute for the value we are looping over
-    newDiv.classList.add(color);
+    newDiv.classList.add(emoji);
 
     // call a function handleCardClick when a div is clicked on
     newDiv.addEventListener("click", handleCardClick);
@@ -68,8 +68,10 @@ function handleCardClick(e) {
   if (noClicking === true) return;
   if (e.target.classList.contains('flipped')) return;
 
+  // Card click listener
   let currentCard = e.target;
-  currentCard.style.backgroundColor = currentCard.classList[0];
+  let emoji = currentCard.classList[0];
+  currentCard.style.backgroundImage = `url(Images/${emoji}.png)`
 
   if (!card1 || !card2) {
     currentCard.classList.add("flipped");
@@ -91,8 +93,8 @@ function handleCardClick(e) {
       noClicking = false;
     } else {
       setTimeout(function() {
-        card1.style.backgroundColor = '';
-        card2.style.backgroundColor = '';
+        card1.style.backgroundImage = '';
+        card2.style.backgroundImage = '';
         card1.classList.remove('flipped');
         card2.classList.remove('flipped');
         card1 = null;
@@ -102,10 +104,10 @@ function handleCardClick(e) {
     }
   }
 
-  if (cardsFlipped === COLORS.length) alert('Game Over!');
+  if (cardsFlipped === EMOJIS.length) alert('Winner!!!');
 
 }
 
 
 // when the DOM loads
-createDivsForColors(shuffledColors);
+createDivsForColors(shuffledEmojis);
