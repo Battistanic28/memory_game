@@ -1,6 +1,6 @@
 body {
   background: rgb(63,94,251);
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  background: radial-gradient(circle, rgba(255, 255, 0, 1) 0%, rgba(252,70,107,1) 100%);
   font-family: 'Krona One', sans-serif;
 }
 
